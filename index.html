@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI農業飛行任務中心：以任務為核心的農業無人機教育與決策入口。">
+  <meta name="theme-color" content="#0f5b45">
+  <title>AI農業飛行任務中心｜AI Agriculture Flight Mission Center</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="主要導覽">
+      <a class="brand" href="#top" aria-label="AI農業飛行任務中心首頁">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span><strong>AIAKOS</strong><small>Flight Mission Center</small></span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span><span class="sr-only">開啟選單</span></button>
+      <div class="nav-links" id="nav-links">
+        <a href="#missions">任務中心</a><a href="#flight-info">飛行資訊</a><a href="#ai-tools">AI 工具</a><a href="#knowledge">新手知識</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">AIAKOS · Mission First</span>
+          <h1>AI農業飛行<br><span>任務中心</span></h1>
+          <p class="hero-lead">從飛行判斷、巡田觀察到植保任務，將複雜資訊整理成清楚、可學習的任務流程。</p>
+          <a class="primary-button" href="#missions">選擇今天的任務 <span aria-hidden="true">→</span></a>
+          <p class="demo-note"><span aria-hidden="true">●</span> 首頁第一版 · 所有數據皆為示範資料</p>
+        </div>
+        <div class="mission-visual" aria-label="農業飛行任務示意圖">
+          <div class="radar radar-one"></div><div class="radar radar-two"></div>
+          <div class="drone" aria-hidden="true"><span class="rotor r1"></span><span class="rotor r2"></span><span class="rotor r3"></span><span class="rotor r4"></span><span class="drone-body">✦</span></div>
+          <div class="visual-card vc-weather"><span>風速</span><strong>3.2 m/s</strong><small>示範資料</small></div>
+          <div class="visual-card vc-field"><span>任務狀態</span><strong>待規劃</strong><small>功能規劃中</small></div>
+          <div class="field-lines"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section mission-section" id="missions">
+      <div class="container">
+        <div class="section-heading centered"><span class="eyebrow">MISSION CENTER</span><h2>今天想完成什麼？</h2><p>從一項明確任務開始，找到需要的資訊與工具。</p></div>
+        <div class="mission-grid">
+          <button class="mission-card featured" data-planned><span class="icon">↗</span><span class="card-tag">核心任務</span><h3>我要飛行</h3><p>建立飛行前的條件檢查與任務準備。</p><span class="card-action">開始規劃 →</span></button>
+          <button class="mission-card" data-planned><span class="icon">⌖</span><h3>我要巡田</h3><p>規劃田區巡查、拍攝與觀察重點。</p><span class="card-action">功能規劃中</span></button>
+          <a class="mission-card" href="#flight-info"><span class="icon">≋</span><h3>查看飛行天氣</h3><p>快速掌握風速、降雨與飛行風險。</p><span class="card-action">查看示範資訊 →</span></a>
+          <button class="mission-card" data-planned><span class="icon">◫</span><h3>查看衛星影像</h3><p>以 NDVI 與影像了解作物生長差異。</p><span class="card-action">功能規劃中</span></button>
+          <button class="mission-card" data-planned><span class="icon">✣</span><h3>植保飛行</h3><p>建立安全、合法的植保作業學習流程。</p><span class="card-action">功能規劃中</span></button>
+          <a class="mission-card" href="#ai-tools"><span class="icon">✦</span><h3>請 AI 協助我</h3><p>依任務情境整理問題與規劃方向。</p><span class="card-action">查看 AI 工具 →</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-bg" id="flight-info">
+      <div class="container">
+        <div class="section-heading split"><div><span class="eyebrow">TODAY'S BRIEFING</span><h2>今日任務簡報</h2></div><span class="status-pill">示範資料 · 未連接即時來源</span></div>
+        <div class="info-columns">
+          <article class="info-panel"><div class="panel-title"><span class="panel-icon blue">↗</span><div><h3>今日飛行資訊</h3><p>飛行前環境概況</p></div></div><div class="metric-grid">
+            <div class="metric"><span>飛行風險</span><strong class="safe">低風險</strong><small>示範判定</small></div><div class="metric"><span>風速</span><strong>3.2 <em>m/s</em></strong><small>示範資料</small></div><div class="metric"><span>降雨</span><strong>10 <em>%</em></strong><small>示範資料</small></div><div class="metric"><span>空域提醒</span><strong class="warning">待查詢</strong><small>尚未連接官方資料</small></div>
+          </div></article>
+          <article class="info-panel"><div class="panel-title"><span class="panel-icon green">⌁</span><div><h3>今日農業資訊</h3><p>田區觀察重點</p></div></div><div class="agri-list">
+            <div><span class="list-icon">⚑</span><p><small>病蟲害提醒</small><strong>注意高濕環境</strong></p><em>示範</em></div><div><span class="list-icon">⌁</span><p><small>作物狀況</small><strong>等待田區資料</strong></p><em>規劃中</em></div><div><span class="list-icon">◉</span><p><small>NDVI 狀態</small><strong>尚未匯入影像</strong></p><em>規劃中</em></div><div><span class="list-icon">✦</span><p><small>AI 任務建議</small><strong>先完成飛行前檢查</strong></p><em>示範</em></div>
+          </div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ai-tools"><div class="container"><div class="section-heading"><span class="eyebrow">AI ASSISTANTS</span><h2>AI 工具</h2><p>未來將依照任務提供分工清楚的智慧協助。</p></div><div class="tool-grid">
+      <button class="tool-card" data-planned><span>↗</span><h3>AI飛行教練</h3><p>飛行前條件與操作學習</p><small>功能規劃中</small></button><button class="tool-card" data-planned><span>✣</span><h3>AI植保助手</h3><p>植保任務與安全提醒</p><small>功能規劃中</small></button><button class="tool-card" data-planned><span>⌘</span><h3>AI任務規劃</h3><p>建立任務流程與檢查表</p><small>功能規劃中</small></button><button class="tool-card" data-planned><span>§</span><h3>AI法規助手</h3><p>協助理解法規查詢方向</p><small>功能規劃中</small></button>
+    </div></div></section>
+
+    <section class="section soft-bg" id="official"><div class="container"><div class="section-heading split"><div><span class="eyebrow">OFFICIAL RESOURCES</span><h2>官方入口</h2></div><p>正式網址將於確認後加入，避免錯誤導向。</p></div><div class="link-row">
+      <button data-planned>民航主管機關 <span>↗</span></button><button data-planned>農業部 <span>↗</span></button><button data-planned>農糧署 <span>↗</span></button><button data-planned>農藥資訊 <span>↗</span></button><button data-planned>空域資訊 <span>↗</span></button>
+    </div></div></section>
+
+    <section class="section" id="knowledge"><div class="container knowledge-wrap"><div class="knowledge-copy"><span class="eyebrow">GETTING STARTED</span><h2>新手知識中心</h2><p>先理解，再起飛。建立安全、合法、有目的的農業飛行觀念。</p><div class="knowledge-list"><button data-planned><span>01</span>無人機基礎<em>功能規劃中</em></button><button data-planned><span>02</span>操作證<em>功能規劃中</em></button><button data-planned><span>03</span>飛行法規<em>功能規劃中</em></button><button data-planned><span>04</span>植保飛行<em>功能規劃中</em></button><button data-planned><span>05</span>常見問題<em>功能規劃中</em></button></div></div><aside class="safety-card"><span class="shield">✓</span><small>MISSION PRINCIPLE</small><h3>每一次起飛，都從安全判斷開始。</h3><p>確認人員、設備、環境、空域與任務目標，再決定是否執行飛行。</p></aside></div></section>
+  </main>
+
+  <footer><div class="container footer-grid"><div><a class="brand footer-brand" href="#top"><span class="brand-mark">A</span><span><strong>AIAKOS</strong><small>AI Agriculture Flight Mission Center</small></span></a><p>把資料整合起來，分析、推演，協助人做出更好的農業決策。</p></div><div><strong>快速導覽</strong><a href="#missions">六大任務</a><a href="#flight-info">今日資訊</a><a href="#knowledge">新手知識</a></div><div><strong>版本資訊</strong><span>首頁 v1.0</span><span>示範資料</span><span>2026 AIAKOS</span></div></div><div class="container footer-bottom"><span>© 2026 AI農業飛行任務中心</span><span>本網站目前為功能原型，未提供即時飛航或農業決策。</span></div></footer>
+  <div class="toast" role="status" aria-live="polite" aria-hidden="true"><strong>功能規劃中</strong><span>此功能將於後續版本逐步建立。</span></div>
+  <script src="./script.js" defer></script>
+</body>
+</html>
