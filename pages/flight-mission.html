@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI農業飛行任務中心：飛行前任務設定、安全檢核與規則式建議。">
+  <meta name="theme-color" content="#0d5a43">
+  <title>我要飛行｜AI農業飛行任務中心</title>
+  <link rel="stylesheet" href="./flight-mission.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="功能頁導覽">
+      <a class="brand" href="../index.html" aria-label="返回 AI農業飛行任務中心首頁">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span><strong>AIAKOS</strong><small>Flight Mission Center</small></span>
+      </a>
+      <a class="back-link" href="../index.html#missions"><span aria-hidden="true">←</span> 返回任務中心</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="shell hero-layout">
+        <div>
+          <span class="eyebrow">PRE-FLIGHT MISSION CHECK</span>
+          <h1>我要飛行</h1>
+          <p>先設定任務，再逐項確認環境、空域、人員與設備，建立一份清楚的飛行前判斷。</p>
+        </div>
+        <aside class="source-notice"><span aria-hidden="true">i</span><p><strong>目前為本機規則判斷</strong><small>尚未連接即時氣象、官方空域或民航資料；正式起飛前仍須查詢官方資訊並以現場狀況為準。</small></p></aside>
+      </div>
+    </section>
+
+    <div class="shell workspace">
+      <nav class="stepper" aria-label="飛行前檢核進度">
+        <button type="button" class="step active" data-step-target="1" aria-current="step"><span>1</span><strong>任務</strong></button>
+        <button type="button" class="step" data-step-target="2"><span>2</span><strong>環境</strong></button>
+        <button type="button" class="step" data-step-target="3"><span>3</span><strong>空域</strong></button>
+        <button type="button" class="step" data-step-target="4"><span>4</span><strong>人員設備</strong></button>
+        <button type="button" class="step" data-step-target="5"><span>5</span><strong>結果</strong></button>
+      </nav>
+
+      <form id="flight-form" novalidate>
+        <section class="form-step active" data-step="1" aria-labelledby="step-1-title">
+          <header class="section-title"><span>01</span><div><small>MISSION SETUP</small><h2 id="step-1-title">設定飛行任務</h2><p>先說清楚要在哪裡、何時、完成什麼任務。</p></div></header>
+          <div class="field-grid">
+            <label>任務名稱<input name="missionName" type="text" maxlength="40" placeholder="例如：水稻田區影像巡查" required><small class="error"></small></label>
+            <label>任務類型<select name="missionType" required><option value="">請選擇</option><option>一般巡田</option><option>影像紀錄</option><option>作物觀察</option><option>地形測繪</option><option>教學練習</option><option>其他</option></select><small class="error"></small></label>
+            <label>飛行地點<input name="location" type="text" maxlength="50" placeholder="例如：屏東縣內埔鄉○○田區" required><small class="error"></small></label>
+            <label>預定日期與時間<input name="flightTime" type="datetime-local" required><small class="error"></small></label>
+            <label>預計飛行高度（公尺）<input name="altitude" type="number" min="1" max="400" inputmode="decimal" placeholder="例如：30" required><small class="error"></small></label>
+            <label>預計飛行時間（分鐘）<input name="duration" type="number" min="1" max="240" inputmode="numeric" placeholder="例如：20" required><small class="error"></small></label>
+          </div>
+          <div class="step-actions"><span></span><button class="primary" type="button" data-next>下一步：環境條件 <span>→</span></button></div>
+        </section>
+
+        <section class="form-step" data-step="2" aria-labelledby="step-2-title" hidden>
+          <header class="section-title"><span>02</span><div><small>ENVIRONMENT CHECK</small><h2 id="step-2-title">輸入現場環境</h2><p>請填入您查詢或現場量測到的數值，不代表即時氣象資料。</p></div></header>
+          <div class="input-note">以下皆為「使用者輸入資料」，系統不會自動取得氣象資訊。</div>
+          <div class="field-grid">
+            <label>平均風速（m/s）<input name="wind" type="number" min="0" max="60" step="0.1" inputmode="decimal" placeholder="例如：3.2" required><small class="hint">仍須遵守機型原廠限制。</small><small class="error"></small></label>
+            <label>陣風（m/s）<input name="gust" type="number" min="0" max="80" step="0.1" inputmode="decimal" placeholder="例如：5.0" required><small class="error"></small></label>
+            <label>降雨狀況<select name="rain" required><option value="">請選擇</option><option value="none">無降雨</option><option value="possible">可能降雨</option><option value="light">正在下小雨</option><option value="heavy">中雨或大雨</option></select><small class="error"></small></label>
+            <label>能見度<select name="visibility" required><option value="">請選擇</option><option value="good">良好，可清楚目視飛行器</option><option value="limited">受霧、煙或逆光影響</option><option value="poor">無法持續目視飛行器</option></select><small class="error"></small></label>
+          </div>
+          <fieldset><legend>現場是否出現以下狀況？</legend><label class="check-option"><input type="checkbox" name="thunder"><span><strong>雷雨、閃電或雷聲</strong><small>雷雨環境不應執行飛行。</small></span></label><label class="check-option"><input type="checkbox" name="unstableWeather"><span><strong>天候快速變化</strong><small>例如強風突然增強或烏雲快速接近。</small></span></label></fieldset>
+          <div class="step-actions"><button class="secondary" type="button" data-prev>← 上一步</button><button class="primary" type="button" data-next>下一步：空域確認 <span>→</span></button></div>
+        </section>
+
+        <section class="form-step" data-step="3" aria-labelledby="step-3-title" hidden>
+          <header class="section-title"><span>03</span><div><small>AIRSPACE CHECK</small><h2 id="step-3-title">確認空域與現場</h2><p>系統未連接官方圖資，請依您實際查詢的結果回答。</p></div></header>
+          <fieldset><legend>官方空域查詢結果</legend><div class="radio-grid"><label><input type="radio" name="airspace" value="clear" required><span><strong>已查詢，可依規定飛行</strong><small>已確認限制、高度與申請要求。</small></span></label><label><input type="radio" name="airspace" value="uncertain"><span><strong>尚未確認或不確定</strong><small>起飛前仍須完成官方查詢。</small></span></label><label><input type="radio" name="airspace" value="restricted"><span><strong>禁止或未取得必要許可</strong><small>本次任務不得起飛。</small></span></label></div><small class="error"></small></fieldset>
+          <fieldset><legend>現場安全條件</legend><label class="check-option"><input type="checkbox" name="peopleClear"><span><strong>已確認起降區與航線遠離無關人員</strong></span></label><label class="check-option"><input type="checkbox" name="obstaclesChecked"><span><strong>已檢查電線、樹木、建築物及其他障礙</strong></span></label><label class="check-option"><input type="checkbox" name="landPermission"><span><strong>已取得土地或場域使用同意</strong></span></label></fieldset>
+          <div class="step-actions"><button class="secondary" type="button" data-prev>← 上一步</button><button class="primary" type="button" data-next>下一步：人員與設備 <span>→</span></button></div>
+        </section>
+
+        <section class="form-step" data-step="4" aria-labelledby="step-4-title" hidden>
+          <header class="section-title"><span>04</span><div><small>CREW &amp; EQUIPMENT</small><h2 id="step-4-title">確認人員與設備</h2><p>完成最後一輪起飛前自我檢查。</p></div></header>
+          <div class="checklist-grid">
+            <fieldset><legend>操作人員</legend><label class="check-option"><input type="checkbox" name="qualified"><span><strong>操作資格符合本次任務需求</strong></span></label><label class="check-option"><input type="checkbox" name="conditionGood"><span><strong>身心狀況良好，沒有酒精或藥物影響</strong></span></label><label class="check-option"><input type="checkbox" name="observerReady"><span><strong>已依任務需要安排觀察員或協助人員</strong></span></label></fieldset>
+            <fieldset><legend>飛行設備</legend><label class="check-option"><input type="checkbox" name="aircraftOk"><span><strong>機體、槳葉、馬達與保護裝置正常</strong></span></label><label class="check-option"><input type="checkbox" name="batteryOk"><span><strong>飛行器與遙控器電量充足</strong></span></label><label class="check-option"><input type="checkbox" name="homePoint"><span><strong>定位、返航點與返航高度已確認</strong></span></label></fieldset>
+          </div>
+          <label class="confirm-box"><input type="checkbox" name="truthful" required><span><strong>我確認以上資料依目前查詢與現場狀況填寫</strong><small>結果僅供飛行前整理與教學使用，不構成飛航許可或安全保證。</small></span></label><small class="error confirm-error"></small>
+          <div class="step-actions"><button class="secondary" type="button" data-prev>← 上一步</button><button class="primary evaluate" type="submit">產生飛行建議 <span>✦</span></button></div>
+        </section>
+
+        <section class="form-step result-step" data-step="5" aria-labelledby="result-title" hidden>
+          <div class="result-hero" data-result-state="hold"><span class="result-icon" aria-hidden="true">!</span><div><small>RULE-BASED PRE-FLIGHT RESULT</small><h2 id="result-title">等待產生結果</h2><p id="result-lead">完成前四步後，系統會整理您的輸入並提供飛行前建議。</p></div></div>
+          <div class="result-grid">
+            <article><h3>任務摘要</h3><dl id="mission-summary"></dl></article>
+            <article><h3>判斷理由</h3><ul id="decision-reasons"></ul></article>
+          </div>
+          <aside class="result-warning"><strong>重要提醒</strong><p>這是依使用者輸入產生的本機規則判斷，不是 AI 即時分析，也不代表已取得飛行許可。正式飛行前，請重新確認官方空域、最新氣象、法規、機型限制與現場安全。</p></aside>
+          <div class="step-actions"><button class="secondary" type="button" data-edit>← 返回修改</button><button class="primary" type="button" data-reset>建立新任務</button></div>
+        </section>
+      </form>
+    </div>
+  </main>
+
+  <footer><div class="shell"><span>© 2026 AI農業飛行任務中心</span><span>功能原型 v1.0 · 未連接即時或官方資料</span></div></footer>
+  <div class="toast" role="status" aria-live="polite" aria-hidden="true"><strong>請完成必填欄位</strong><span>完成後才能進入下一步。</span></div>
+  <script src="./flight-mission.js" defer></script>
+</body>
+</html>
