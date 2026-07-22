@@ -7,6 +7,26 @@ document.addEventListener('DOMContentLoaded', () => {
   let highestStep = 1;
   let toastTimer;
 
+  const missionOptions = [
+    { name: '風災後作物倒伏巡查', type: '一般巡田' },
+    { name: '病蟲害疑似區影像巡查', type: '作物觀察' },
+    { name: '灌溉不均區域巡查', type: '一般巡田' },
+    { name: '作物生長差異影像紀錄', type: '影像紀錄' },
+    { name: '豪雨後積水範圍巡查', type: '一般巡田' },
+    { name: '採收前田區影像紀錄', type: '影像紀錄' },
+    { name: '田區缺株與裸露地觀察', type: '作物觀察' },
+    { name: '農地邊界與地形測繪', type: '地形測繪' },
+    { name: '棚架與防風設施巡查', type: '一般巡田' },
+    { name: '空拍航線規劃教學練習', type: '教學練習' }
+  ];
+  const cropOptions = [
+    { name: '水稻', type: '低矮作物' }, { name: '花生', type: '低矮作物' },
+    { name: '草莓', type: '低矮作物' }, { name: '玉米', type: '中型作物' },
+    { name: '甘蔗', type: '中型作物' }, { name: '香蕉', type: '高大作物' },
+    { name: '芒果', type: '果園／林木' }, { name: '蓮霧', type: '果園／林木' },
+    { name: '葡萄', type: '棚架作物' }, { name: '百香果', type: '棚架作物' }
+  ];
+
   const showToast = (title, message) => {
     toast.querySelector('strong').textContent = title;
     toast.querySelector('span').textContent = message;
@@ -78,6 +98,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const value = (name) => form.elements[name];
   const isChecked = (name) => Boolean(value(name)?.checked);
+  const randomItem = (items) => items[Math.floor(Math.random() * items.length)];
+  const updateCropType = () => {
+    const crop = cropOptions.find((item) => item.name === value('cropName').value);
+    value('cropType').value = crop?.type || '';
+  };
+
+  document.querySelector('[data-random-mission]').addEventListener('click', () => {
+    const mission = randomItem(missionOptions);
+    value('missionName').value = mission.name;
+    value('missionType').value = mission.type;
+    showToast('已產生隨機任務', `${mission.name}｜${mission.type}`);
+  });
+  document.querySelector('[data-random-crop]').addEventListener('click', () => {
+    const crop = randomItem(cropOptions);
+    value('cropName').value = crop.name;
+    updateCropType();
+    showToast('已產生隨機作物', `${crop.name}｜${crop.type}`);
+  });
+  value('cropName').addEventListener('change', updateCropType);
 
   const evaluate = () => {
     const blockers = [];
@@ -143,6 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
     summary.replaceChildren();
     const pairs = [
       ['任務', value('missionName').value],
+      ['作物', value('cropName').value],
+      ['作物型態', value('cropType').value],
       ['類型', value('missionType').value],
       ['地點', value('location').value],
       ['時間', value('flightTime').value.replace('T', ' ')],

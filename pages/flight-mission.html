@@ -44,8 +44,11 @@
       <form id="flight-form" novalidate>
         <section class="form-step active" data-step="1" aria-labelledby="step-1-title">
           <header class="section-title"><span>01</span><div><small>MISSION SETUP</small><h2 id="step-1-title">設定飛行任務</h2><p>先說清楚要在哪裡、何時、完成什麼任務。</p></div></header>
+          <div class="input-note random-note">可自行選填，也可按下隨機按鈕產生練習題。作物型態會依作物自動帶入。</div>
           <div class="field-grid">
-            <label>任務名稱<input name="missionName" type="text" maxlength="40" placeholder="例如：水稻田區影像巡查" required><small class="error"></small></label>
+            <label><span class="label-heading"><span>任務名稱</span><button class="field-random" type="button" data-random-mission>🎲 隨機任務</button></span><input name="missionName" type="text" maxlength="40" placeholder="例如：風災後田區影像巡查" required><small class="error"></small></label>
+            <label><span class="label-heading"><span>作物名稱</span><button class="field-random" type="button" data-random-crop>🎲 隨機作物</button></span><select name="cropName" required><option value="">請選擇</option><option>水稻</option><option>花生</option><option>草莓</option><option>玉米</option><option>甘蔗</option><option>香蕉</option><option>芒果</option><option>蓮霧</option><option>葡萄</option><option>百香果</option></select><small class="error"></small></label>
+            <label>作物型態<input name="cropType" type="text" placeholder="選擇作物後自動顯示" readonly required><small class="hint">作物高度與棚架等型態會影響航線、離冠層高度及障礙判斷。</small><small class="error"></small></label>
             <label>任務類型<select name="missionType" required><option value="">請選擇</option><option>一般巡田</option><option>影像紀錄</option><option>作物觀察</option><option>地形測繪</option><option>教學練習</option><option>其他</option></select><small class="error"></small></label>
             <label>飛行地點<input name="location" type="text" maxlength="50" placeholder="例如：屏東縣內埔鄉○○田區" required><small class="error"></small></label>
             <label>預定日期與時間<input name="flightTime" type="datetime-local" required><small class="error"></small></label>
