@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AI農業飛行任務中心：飛行前任務設定、安全檢核與規則式建議。">
+  <meta name="description" content="AI農業飛行任務中心：空拍機飛行前評估情境模擬、學習紀錄與能力小證書。">
   <meta name="theme-color" content="#0d5a43">
   <title>我要飛行｜AI農業飛行任務中心</title>
   <link rel="stylesheet" href="./flight-mission.css">
@@ -26,9 +26,9 @@
         <div>
           <span class="eyebrow">PRE-FLIGHT MISSION CHECK</span>
           <h1>我要飛行</h1>
-          <p>先設定任務，再逐項確認環境、空域、人員與設備，建立一份清楚的飛行前判斷。</p>
+          <p>透過隨機情境與五步驟檢核，練習空拍機飛行前風險判讀與安全決策。</p>
         </div>
-        <aside class="source-notice"><span aria-hidden="true">i</span><p><strong>目前為本機規則判斷</strong><small>尚未連接即時氣象、官方空域或民航資料；正式起飛前仍須查詢官方資訊並以現場狀況為準。</small></p></aside>
+        <aside class="source-notice"><span aria-hidden="true">i</span><p><strong>教學模擬模式</strong><small>本功能用於學生飛行決策訓練，不構成實際飛行許可、操作資格或安全保證。</small></p></aside>
       </div>
     </section>
 
@@ -85,7 +85,7 @@
             <fieldset><legend>飛行設備</legend><label class="check-option"><input type="checkbox" name="aircraftOk"><span><strong>機體、槳葉、馬達與保護裝置正常</strong></span></label><label class="check-option"><input type="checkbox" name="batteryOk"><span><strong>飛行器與遙控器電量充足</strong></span></label><label class="check-option"><input type="checkbox" name="homePoint"><span><strong>定位、返航點與返航高度已確認</strong></span></label></fieldset>
           </div>
           <label class="confirm-box"><input type="checkbox" name="truthful" required><span><strong>我確認以上資料依目前查詢與現場狀況填寫</strong><small>結果僅供飛行前整理與教學使用，不構成飛航許可或安全保證。</small></span></label><small class="error confirm-error"></small>
-          <div class="step-actions"><button class="secondary" type="button" data-prev>← 上一步</button><button class="primary evaluate" type="submit">產生飛行建議 <span>✦</span></button></div>
+          <div class="step-actions"><button class="secondary" type="button" data-prev>← 上一步</button><button class="primary evaluate" type="submit">進入飛行評估 <span>→</span></button></div>
         </section>
 
         <section class="form-step result-step" data-step="5" aria-labelledby="result-title" hidden>
@@ -101,7 +101,7 @@
     </div>
   </main>
 
-  <footer><div class="shell"><span>© 2026 AI農業飛行任務中心</span><span>功能原型 v1.0 · 未連接即時或官方資料</span></div></footer>
+  <footer><div class="shell"><span>© 2026 AI農業飛行任務中心</span><span>情境模擬訓練 v2.0 · 未連接即時或官方資料</span></div></footer>
   <div class="toast" role="status" aria-live="polite" aria-hidden="true"><strong>請完成必填欄位</strong><span>完成後才能進入下一步。</span></div>
   <script src="./flight-mission.js" defer></script>
 </body>
