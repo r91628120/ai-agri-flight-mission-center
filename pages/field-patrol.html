@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="我要巡田：AI農業空拍巡田模擬訓練。">
-  <meta name="theme-color" content="#0d5a43">
-  <title>我要巡田｜AI農業飛行任務中心</title>
+  <meta name="description" content="我要巡田 v2.0：高中職農業無人機情境判斷、空拍規劃與影像判讀基礎訓練。">
+  <meta name="theme-color" content="#0b5b45">
+  <title>我要巡田 v2.0｜AI農業飛行任務中心</title>
   <link rel="stylesheet" href="./field-patrol.css">
 </head>
 <body>
@@ -13,6 +13,7 @@
   <header class="site-header">
     <nav class="nav shell">
       <a class="brand" href="../index.html"><span class="brand-mark">A</span><span><strong>AIAKOS</strong><small>Flight Mission Center</small></span></a>
+      <span class="version-badge">FIELD PATROL v2.0</span>
       <a class="back-link" href="../index.html#missions">← 返回任務中心</a>
     </nav>
   </header>
@@ -20,109 +21,136 @@
   <main id="main">
     <section class="page-hero">
       <div class="shell hero-layout">
-        <div><span class="eyebrow">AI FIELD PATROL TRAINING</span><h1>我要巡田</h1><p>從任務目標、航線拍攝到異常標記，完成一次農業空拍巡田模擬。</p></div>
-        <aside class="source-notice"><span>i</span><p><strong>教學模擬模式</strong><small>空拍影像只能協助發現疑似異常，不能取代田間複查、專業診斷或實際飛行安全判斷。</small></p></aside>
+        <div>
+          <span class="eyebrow">AI FIELD PATROL TRAINING</span>
+          <h1>我要巡田 <em>v2.0</em></h1>
+          <p>閱讀田間線索、判斷巡田目標、規劃專業空拍，再從十二個影像區塊找出疑似異常。</p>
+          <div class="hero-tags"><span>情境判斷</span><span>空拍測繪</span><span>影像辨識</span><span>決策訓練</span></div>
+        </div>
+        <aside class="source-notice"><span>i</span><p><strong>高中職基礎訓練模式</strong><small>本網站使用模擬題目建立決策觀念。實際飛行仍須遵守空域、法規、現場安全與設備操作規範；空拍影像不能取代田間複查與專業診斷。</small></p></aside>
       </div>
     </section>
 
     <div class="shell workspace">
       <div class="quick-bar">
-        <p><strong>巡田學習歷程</strong><small>完成任務後，紀錄會保存在目前瀏覽器。</small></p>
+        <p><strong>巡田學習歷程</strong><small>內建 24 組完整情境；紀錄保存在目前瀏覽器。</small></p>
         <button type="button" class="secondary" data-open-records>📊 我的巡田紀錄</button>
       </div>
 
       <nav class="stepper" aria-label="巡田任務進度">
-        <button type="button" class="step active" data-step-target="1"><span>1</span><strong>任務</strong></button>
-        <button type="button" class="step" data-step-target="2"><span>2</span><strong>目標</strong></button>
-        <button type="button" class="step" data-step-target="3"><span>3</span><strong>規劃</strong></button>
-        <button type="button" class="step" data-step-target="4"><span>4</span><strong>影像</strong></button>
-        <button type="button" class="step" data-step-target="5"><span>5</span><strong>成果</strong></button>
+        <button type="button" class="step active" data-step-target="1"><span>1</span><strong>讀懂任務</strong></button>
+        <button type="button" class="step" data-step-target="2"><span>2</span><strong>判斷目標</strong></button>
+        <button type="button" class="step" data-step-target="3"><span>3</span><strong>規劃空拍</strong></button>
+        <button type="button" class="step" data-step-target="4"><span>4</span><strong>判讀影像</strong></button>
+        <button type="button" class="step" data-step-target="5"><span>5</span><strong>成果回饋</strong></button>
       </nav>
 
       <form id="patrol-form" novalidate>
         <section class="form-step active" data-step="1">
-          <header class="section-title"><span>01</span><div><small>MISSION SETUP</small><h2>建立巡田任務</h2><p>可以自行選填，也可以產生一組合理的農業巡田情境。</p></div></header>
-          <button class="random-all" type="button" data-random>🎲 隨機產生完整巡田情境</button>
-          <div class="field-grid">
-            <label>作物名稱<select name="crop" required><option value="">請選擇</option><option>水稻</option><option>玉米</option><option>花生</option><option>香蕉</option><option>芒果</option><option>蓮霧</option><option>葡萄</option><option>百香果</option></select><small class="error"></small></label>
-            <label>作物型態<input name="cropType" readonly placeholder="選擇作物後自動顯示"><small class="hint">型態會影響高度與拍攝規劃。</small></label>
-            <label>巡田地點<input name="location" maxlength="40" placeholder="例如：屏東縣內埔鄉教學田區" required><small class="error"></small></label>
-            <label>巡田日期<input name="date" type="date" required><small class="error"></small></label>
-            <label>生育階段<select name="stage" required><option value="">請選擇</option><option>幼苗期</option><option>營養生長期</option><option>開花期</option><option>結果／充實期</option><option>採收前</option></select><small class="error"></small></label>
-            <label>田區面積<select name="area" required><option value="">請選擇</option><option>小型田區（1公頃以下）</option><option>中型田區（1～3公頃）</option><option>大型田區（3公頃以上）</option></select><small class="error"></small></label>
+          <header class="section-title"><span>01</span><div><small>MISSION BRIEFING</small><h2>建立完整巡田題目</h2><p>系統會一次產生完整情境與已知線索，請先讀懂題目。</p></div></header>
+          <div class="teacher-note"><strong>🎓 學習任務</strong><p>第一頁只提供「已知條件」，不會顯示正確巡田目標。請把自己當成接到農民任務的無人機操作員。</p></div>
+          <button class="random-all" type="button" data-random>🎲 隨機產生一組完整巡田題目</button>
+          <div id="mission-placeholder" class="mission-placeholder">
+            <strong>尚未建立題目</strong><p>請按下上方按鈕，由 24 組題庫中抽取本次任務。</p>
           </div>
-          <div class="step-actions"><span></span><button class="primary" type="button" data-next>下一步：觀察目標 →</button></div>
+          <article id="mission-card" class="mission-card" hidden>
+            <div class="mission-card-head"><div><small>MISSION ID</small><strong id="mission-id">—</strong></div><span id="mission-category">教學任務</span></div>
+            <div class="mission-facts">
+              <p><small>作物</small><strong id="mission-crop">—</strong></p>
+              <p><small>生育階段</small><strong id="mission-stage">—</strong></p>
+              <p><small>田區</small><strong id="mission-area">—</strong></p>
+              <p><small>地點</small><strong id="mission-location">—</strong></p>
+              <p><small>巡田日期</small><strong id="mission-date">—</strong></p>
+            </div>
+            <div class="clue-box"><span>🔎</span><div><small>巡田前已知線索</small><p id="mission-clue">—</p></div></div>
+          </article>
+          <input type="hidden" name="scenarioId" required>
+          <div class="step-actions"><span></span><button class="primary" type="button" data-next>我已讀懂題目，開始判斷 →</button></div>
         </section>
 
         <section class="form-step" data-step="2" hidden>
-          <header class="section-title"><span>02</span><div><small>OBSERVATION TARGET</small><h2>選擇巡田觀察目標</h2><p>先想清楚為什麼要飛，才能決定要拍什麼。</p></div></header>
-          <fieldset><legend>本次主要觀察目標（單選）</legend>
-            <div class="choice-grid">
-              <label><input type="radio" name="target" value="生長差異" required><span><strong>🌱 生長差異</strong><small>比較植株高度、顏色與覆蓋狀況。</small></span></label>
-              <label><input type="radio" name="target" value="缺水或排水異常"><span><strong>💧 缺水或排水異常</strong><small>尋找萎凋、積水或分布差異。</small></span></label>
-              <label><input type="radio" name="target" value="倒伏或風災損傷"><span><strong>🌬️ 倒伏或風災損傷</strong><small>記錄受損範圍與位置。</small></span></label>
-              <label><input type="radio" name="target" value="疑似病蟲害"><span><strong>🔎 疑似病蟲害</strong><small>只標記疑似區，仍須到田間複查。</small></span></label>
+          <header class="section-title"><span>02</span><div><small>OBSERVATION TARGET</small><h2>判斷主要巡田目標</h2><p>根據第一頁的條件與已知線索，判斷這次升空最主要要找什麼。</p></div></header>
+          <div class="context-strip" data-context="mission"></div>
+          <fieldset><legend>本次最主要的巡田觀察目標是什麼？（單選）</legend>
+            <div class="choice-grid target-grid">
+              <label><input type="radio" name="target" value="growth" required><span><strong>🌱 生長差異</strong><small>比較植株高度、葉色、冠層與覆蓋狀況。</small></span></label>
+              <label><input type="radio" name="target" value="drought"><span><strong>☀️ 水分不足或灌溉異常</strong><small>尋找萎凋、捲葉或供水分布不均。</small></span></label>
+              <label><input type="radio" name="target" value="drainage"><span><strong>💧 積水或排水異常</strong><small>辨識低窪積水、濕害或排水不良範圍。</small></span></label>
+              <label><input type="radio" name="target" value="pest"><span><strong>🔎 疑似病蟲害</strong><small>標記疑似區域，之後仍須近距離複查。</small></span></label>
+              <label><input type="radio" name="target" value="storm"><span><strong>🌬️ 倒伏或風雨損傷</strong><small>確認傾斜、折損與受害範圍。</small></span></label>
+              <label><input type="radio" name="target" value="weed"><span><strong>🌿 雜草或競爭區域</strong><small>觀察非作物植被與田間競爭分布。</small></span></label>
             </div><small class="error"></small>
           </fieldset>
-          <fieldset><legend>巡田前已知線索（可複選）</legend>
-            <div class="check-grid">
-              <label><input type="checkbox" name="clue" value="近期降雨不均"><span>近期降雨不均</span></label>
-              <label><input type="checkbox" name="clue" value="田區局部顏色異常"><span>田區局部顏色異常</span></label>
-              <label><input type="checkbox" name="clue" value="曾有強風或豪雨"><span>曾有強風或豪雨</span></label>
-              <label><input type="checkbox" name="clue" value="農民回報生長不一致"><span>農民回報生長不一致</span></label>
-            </div>
-          </fieldset>
-          <div class="learning-note"><strong>學習提醒</strong><p>巡田不是「漫無目的地飛」。任務目標會決定航線、高度、相機角度與後續複查方式。</p></div>
-          <div class="step-actions"><button class="secondary" type="button" data-prev>← 上一步</button><button class="primary" type="button" data-next>下一步：拍攝規劃 →</button></div>
+          <div class="learning-note"><strong>判斷原則</strong><p>選擇「最主要」的任務目標。農田可能同時有多個問題，但本題線索會指向一項最需要優先確認的目標。</p></div>
+          <div class="step-actions"><button class="secondary" type="button" data-prev>← 返回題目</button><button class="primary" type="button" data-next>確認目標，進入空拍規劃 →</button></div>
         </section>
 
         <section class="form-step" data-step="3" hidden>
-          <header class="section-title"><span>03</span><div><small>FLIGHT &amp; CAPTURE PLAN</small><h2>規劃航線與拍攝</h2><p>依作物型態和觀察目標選擇適合的方式。</p></div></header>
+          <header class="section-title"><span>03</span><div><small>FLIGHT &amp; CAPTURE PLAN</small><h2>規劃航線與專業空拍</h2><p>根據任務和自己判斷的目標，完成四項空拍規劃。</p></div></header>
+          <div class="context-strip" data-context="plan"></div>
           <div class="field-grid">
-            <label>離作物冠層高度<select name="height" required><option value="">請選擇</option><option value="low">低空（10～20公尺）</option><option value="mid">中空（20～40公尺）</option><option value="high">較高空（40公尺以上）</option></select><small class="error"></small></label>
-            <label>航線方式<select name="route" required><option value="">請選擇</option><option value="grid">網格式全區覆蓋</option><option value="row">沿作物行列往返</option><option value="focus">異常區定點環繞</option><option value="random">自由飛行、沒有固定航線</option></select><small class="error"></small></label>
-            <label>拍攝角度<select name="angle" required><option value="">請選擇</option><option value="top">垂直俯視</option><option value="oblique">斜角拍攝</option><option value="mixed">俯視＋斜拍</option></select><small class="error"></small></label>
-            <label>影像重疊規劃<select name="overlap" required><option value="">請選擇</option><option value="adequate">有規劃足夠重疊</option><option value="low">重疊偏低</option><option value="none">未規劃影像重疊</option></select><small class="error"></small></label>
+            <label>離作物冠層高度<select name="height" required><option value="">請選擇……</option><option value="low">低空（10～20 公尺）｜細節較多、範圍較小</option><option value="mid">中空（20～40 公尺）｜兼顧細節與範圍</option><option value="high">較高空（40 公尺以上）｜範圍大、細節較少</option></select><small class="error"></small></label>
+            <label>航線方式<select name="route" required><option value="">請選擇……</option><option value="grid">網格式全區覆蓋</option><option value="row">沿作物行列往返</option><option value="focus">疑似區定點環繞</option><option value="random">自由飛行、沒有固定航線</option></select><small class="error"></small></label>
+            <label>拍攝角度<select name="angle" required><option value="">請選擇……</option><option value="top">垂直俯視｜適合分布、覆蓋與測繪</option><option value="oblique">斜角拍攝｜適合株高、側面與倒伏觀察</option><option value="mixed">俯視＋斜拍｜兼顧分布與立體狀況</option></select><small class="error"></small></label>
           </div>
-          <fieldset><legend>起飛前任務確認</legend>
-            <div class="check-grid">
-              <label><input type="checkbox" name="safety" value="空域與法規已確認"><span>空域與法規已確認</span></label>
-              <label><input type="checkbox" name="safety" value="人員、設備與電量已確認"><span>人員、設備與電量已確認</span></label>
-              <label><input type="checkbox" name="safety" value="天氣與現場障礙已確認"><span>天氣與現場障礙已確認</span></label>
+
+          <section class="overlap-lesson" aria-labelledby="overlap-title">
+            <div class="lesson-heading"><div><small>AERIAL MAPPING BASICS</small><h3 id="overlap-title">影像重疊規劃</h3><p>照片需要保留共同區域，軟體才能找到相同特徵並拼接完整田區。</p></div><button type="button" class="text-button" data-toggle-overlap aria-expanded="false">查看專業說明＋</button></div>
+            <div class="overlap-explainer" data-overlap-explainer hidden>
+              <article><div class="overlap-demo forward"><span></span><span></span><span></span><i>飛行方向 →</i></div><h4>航向重疊</h4><p>同一條航線上，前後兩張照片重複拍到的範圍。重疊不足，飛行方向可能出現缺口。</p></article>
+              <article><div class="overlap-demo side"><span></span><span></span><i>相鄰航線</i></div><h4>旁向重疊</h4><p>兩條相鄰航線之間的照片重複範圍。像割草換到下一排時，仍要蓋到上一排的一部分。</p></article>
+              <div class="professional-tip"><strong>專業提醒</strong><p>實際比例會受高度、相機、作物冠層、風速、地形及軟體要求影響。本訓練先學會根據任務，在完整度、效率與照片數量之間做選擇。</p></div>
             </div>
+            <fieldset class="overlap-options"><legend>請選擇本次影像重疊方案</legend>
+              <div class="plan-grid">
+                <label><input type="radio" name="overlap" value="quick" required><span class="plan-card"><b>A</b><strong>快速巡查</strong><small>航向約 60%／旁向約 50%</small><em>照片較少、速度較快，但拼接與完整度較低。</em><span class="mini-overlap low-overlap"><i></i><i></i><i></i></span></span></label>
+                <label><input type="radio" name="overlap" value="standard"><span class="plan-card"><b>B</b><strong>標準巡田</strong><small>航向約 75%／旁向約 65%</small><em>兼顧田區完整度、飛行時間與照片數量。</em><span class="mini-overlap medium-overlap"><i></i><i></i><i></i></span></span></label>
+                <label><input type="radio" name="overlap" value="precision"><span class="plan-card"><b>C</b><strong>精細巡查</strong><small>航向約 85%／旁向約 75%</small><em>共同影像較多，適合細部判讀，但較耗時。</em><span class="mini-overlap high-overlap"><i></i><i></i><i></i></span></span></label>
+              </div><small class="error"></small>
+            </fieldset>
+            <div id="overlap-impact" class="impact-panel" aria-live="polite"><strong>尚未選擇方案</strong><span>請比較三種方案的完整度、效率與適用任務。</span></div>
+          </section>
+
+          <fieldset><legend>起飛前安全確認（全部必須完成）</legend>
+            <div class="check-grid">
+              <label><input type="checkbox" name="safety" value="airspace"><span>空域與法規已確認</span></label>
+              <label><input type="checkbox" name="safety" value="equipment"><span>人員、設備與電量已確認</span></label>
+              <label><input type="checkbox" name="safety" value="weather"><span>天氣與現場障礙已確認</span></label>
+            </div><small class="error safety-error"></small>
           </fieldset>
-          <div class="step-actions"><button class="secondary" type="button" data-prev>← 上一步</button><button class="primary" type="button" data-next>下一步：模擬影像 →</button></div>
+          <div class="step-actions"><button class="secondary" type="button" data-prev>← 返回目標</button><button class="primary" type="button" data-next>確認規劃，進入影像判讀 →</button></div>
         </section>
 
         <section class="form-step" data-step="4" hidden>
-          <header class="section-title"><span>04</span><div><small>SIMULATED AERIAL IMAGE</small><h2>標記疑似異常區</h2><p>觀察模擬田區，點選您認為需要到現場複查的區塊。</p></div></header>
+          <header class="section-title"><span>04</span><div><small>SIMULATED AERIAL IMAGE</small><h2>判讀十二個影像區塊</h2><p>綜合前三頁資料，找出 2～4 個最需要到現場複查的疑似異常區。</p></div></header>
+          <div class="context-strip full-context" data-context="image"></div>
+          <div class="image-instruction"><strong>作答方式</strong><p>比較顏色、亮度、紋理與植株排列。點選可疑區塊，再點一次可取消；系統不會在送出前顯示正確答案。</p></div>
           <div class="image-layout">
             <div>
-              <div class="field-map" role="group" aria-label="模擬空拍田區">
-                <button type="button" class="plot" data-plot="A1"><span>A1</span></button><button type="button" class="plot" data-plot="A2"><span>A2</span></button><button type="button" class="plot suspicious" data-plot="A3"><span>A3</span></button><button type="button" class="plot" data-plot="A4"><span>A4</span></button>
-                <button type="button" class="plot" data-plot="B1"><span>B1</span></button><button type="button" class="plot suspicious" data-plot="B2"><span>B2</span></button><button type="button" class="plot suspicious" data-plot="B3"><span>B3</span></button><button type="button" class="plot" data-plot="B4"><span>B4</span></button>
-                <button type="button" class="plot" data-plot="C1"><span>C1</span></button><button type="button" class="plot" data-plot="C2"><span>C2</span></button><button type="button" class="plot" data-plot="C3"><span>C3</span></button><button type="button" class="plot" data-plot="C4"><span>C4</span></button>
-              </div>
-              <p class="map-caption">教學模擬影像｜顏色較淡、紋理不均的區域可能需要複查，但不能直接判定原因。</p>
+              <div id="field-map" class="field-map" role="group" aria-label="十二格模擬空拍田區"></div>
+              <p class="map-caption">教學模擬影像｜影像差異只代表「疑似異常」，不能直接判定原因。</p>
             </div>
-            <aside class="selection-panel"><small>SELECTED AREAS</small><h3>已標記區域</h3><p id="selected-plots">尚未標記</p><strong id="selected-count">0 個區域</strong><button type="button" class="secondary" data-clear-plots>清除標記</button></aside>
+            <aside class="selection-panel"><small>SELECTED AREAS</small><h3>我的標記</h3><p id="selected-plots">尚未標記</p><strong id="selected-count">0 個區域</strong><p class="selection-hint">本題有 2～4 個疑似異常區。</p><button type="button" class="secondary" data-clear-plots>清除標記</button></aside>
           </div>
-          <label class="full-label">您認為下一步應該怎麼做？<select name="action" required><option value="">請選擇</option><option value="field">前往標記區域進行田間複查</option><option value="diagnose">直接把空拍影像當成病害確診結果</option><option value="ignore">不需處理，僅保存照片</option></select><small class="error"></small></label>
-          <div class="step-actions"><button class="secondary" type="button" data-prev>← 上一步</button><button class="primary" type="submit">完成巡田評估 →</button></div>
+          <label class="full-label">影像初步篩查後，最適合的下一步是什麼？<select name="action" required><option value="">請選擇……</option><option value="field">前往標記區域進行田間複查</option><option value="diagnose">直接把空拍影像當成病害確診結果</option><option value="ignore">不需處理，僅保存照片</option></select><small class="error"></small></label>
+          <div class="submit-warning"><strong>⚠️ 送出前請再次確認</strong><p>請確認前面的巡田目標、飛行規劃及本頁影像標記。送出後才會公布正確答案與逐項評分。</p></div>
+          <div class="step-actions"><button class="secondary" type="button" data-prev>← 返回規劃</button><button class="primary submit-button" type="submit">✅ 確認答案並完成巡田評估</button></div>
         </section>
 
         <section class="form-step result-step" data-step="5" hidden>
-          <div class="result-hero"><span class="result-icon">✓</span><div><small>FIELD PATROL RESULT</small><h2 id="result-title">巡田學習成果</h2><p id="result-lead">完成任務後，這裡會顯示規劃評估與改進建議。</p></div></div>
-          <div class="score-row"><article><small>本次分數</small><strong id="score">--</strong></article><article><small>完成任務</small><strong id="completed-count">0</strong></article><article><small>平均分數</small><strong id="average-score">--</strong></article></div>
-          <div class="result-grid"><article><h3>任務摘要</h3><dl id="summary"></dl></article><article><h3>學習回饋</h3><ul id="feedback"></ul></article></div>
-          <section class="records"><div class="records-heading"><div><small>LOCAL LEARNING HISTORY</small><h3>最近20筆巡田紀錄</h3></div><button type="button" class="danger-link" data-clear-records>清除全部</button></div><div id="records-list"></div><p class="storage-note">紀錄僅保存在目前瀏覽器；清除瀏覽資料或更換裝置後可能消失。</p></section>
-          <div class="step-actions"><button class="secondary" type="button" data-edit>← 返回修改</button><button class="primary" type="button" data-reset>建立新任務</button></div>
+          <div class="result-hero"><span class="result-icon">✓</span><div><small>FIELD PATROL RESULT</small><h2 id="result-title">巡田學習成果</h2><p id="result-lead">完成任務後，這裡會顯示正確答案、逐項分數與改進建議。</p></div><strong id="score">--</strong></div>
+          <div class="score-row"><article><small>目標判斷</small><strong id="score-target">--</strong></article><article><small>空拍規劃</small><strong id="score-plan">--</strong></article><article><small>影像判讀</small><strong id="score-image">--</strong></article><article><small>安全與決策</small><strong id="score-safety">--</strong></article></div>
+          <section class="answer-review"><div class="records-heading"><div><small>ANSWER REVIEW</small><h3>逐項答案與理由</h3></div></div><div id="answer-details"></div></section>
+          <div class="result-grid"><article><h3>任務摘要</h3><dl id="summary"></dl></article><article><h3>改進建議</h3><ul id="feedback"></ul></article></div>
+          <section class="records"><div class="records-heading"><div><small>LOCAL LEARNING HISTORY</small><h3>最近 20 筆巡田紀錄</h3></div><button type="button" class="danger-link" data-clear-records>清除全部</button></div><div class="history-stats"><p><small>完成任務</small><strong id="completed-count">0</strong></p><p><small>平均分數</small><strong id="average-score">--</strong></p></div><div id="records-list"></div><p class="storage-note">紀錄僅保存在目前瀏覽器；清除瀏覽資料或更換裝置後可能消失。</p></section>
+          <div class="step-actions"><button class="secondary" type="button" data-edit>← 返回檢視／修改</button><button class="primary" type="button" data-reset>抽取新的巡田題目</button></div>
         </section>
       </form>
     </div>
   </main>
-  <footer><div class="shell"><span>© 2026 AI農業飛行任務中心</span><span>我要巡田 v1.0 · 教學模擬資料</span></div></footer>
-  <div class="toast" aria-live="polite" aria-hidden="true"><strong>請完成本步驟</strong><span></span></div>
+
+  <footer><div class="shell"><span>© 2026 AI農業飛行任務中心</span><span>我要巡田 v2.0 · 高中職基礎訓練 · 教學模擬資料</span></div></footer>
+  <div class="toast" aria-live="polite" aria-hidden="true"><strong>操作提醒</strong><span></span></div>
   <script src="./field-patrol.js" defer></script>
 </body>
 </html>
