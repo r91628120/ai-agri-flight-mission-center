@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3200);
   };
 
-  const showStep = (number) => {
-    if (number > highestStep) return;
+  const showStep = (number, allowRecords = false) => {
+    if (number > highestStep && !(allowRecords && number === 5)) return;
     currentStep = number;
     steps.forEach((step) => {
       const active = Number(step.dataset.step) === number;
@@ -267,19 +267,21 @@ document.addEventListener('DOMContentLoaded', () => {
     records.unshift({ id: Date.now(), date: new Date().toLocaleString('zh-TW'), mission: value('missionName').value, crop: value('cropName').value, answer, correctAnswer: pendingAssessment.state, correct });
     localStorage.setItem(STORAGE_KEY, JSON.stringify(records.slice(0, 20)));
   };
-  const renderProgress = (lastCorrect) => {
+  const renderProgress = (lastCorrect = null, openRecords = false) => {
     let panel = document.querySelector('#learning-progress');
     if (!panel) { panel = document.createElement('section'); panel.id = 'learning-progress'; panel.className = 'learning-progress'; document.querySelector('.result-warning').after(panel); }
     const records = getRecords(); const correctCount = records.filter((r) => r.correct).length;
-    panel.innerHTML = `<h3>${lastCorrect ? '✅ 本題判斷正確' : '💡 本題尚需加強'}</h3><p>最近保存 ${records.length} 筆｜答對 ${correctCount} 題｜證書進度 ${Math.min(correctCount, 10)}／10</p><div class="record-actions"><button type="button" class="secondary" data-records>查看飛行紀錄</button>${correctCount >= 10 ? '<button type="button" class="primary" data-certificate>下載 AI 飛行評估小證書</button>' : ''}</div><div class="records-list" hidden></div>`;
+    const heading = lastCorrect === null ? '📊 我的飛行評估成果' : lastCorrect ? '✅ 本題判斷正確' : '💡 本題尚需加強';
+    panel.innerHTML = `<h3>${heading}</h3><p>最近保存 ${records.length} 筆｜累積答對 ${correctCount} 題｜證書進度 ${Math.min(correctCount, 10)}／10</p><div class="record-actions"><button type="button" class="secondary" data-records>查看飛行紀錄</button>${correctCount >= 10 ? '<button type="button" class="primary" data-certificate>下載 AI 飛行評估小證書</button>' : ''}</div><div class="records-list" hidden></div>`;
     panel.querySelector('[data-records]').addEventListener('click', () => renderRecords(panel));
     panel.querySelector('[data-certificate]')?.addEventListener('click', downloadCertificate);
+    if (openRecords) renderRecords(panel);
   };
   const renderRecords = (panel) => {
     const list = panel.querySelector('.records-list'); const records = getRecords(); list.hidden = false;
     list.innerHTML = records.length ? records.map((r) => `<article><span>${r.correct ? '✅' : '❌'} ${r.date}｜${r.crop}｜${r.mission}</span><button type="button" data-delete-record="${r.id}" aria-label="刪除此筆紀錄">刪除</button></article>`).join('') + '<button type="button" class="danger-text" data-clear-records>清除全部紀錄</button>' : '<p>目前尚無紀錄。</p>';
-    list.querySelectorAll('[data-delete-record]').forEach((button) => button.addEventListener('click', () => { const next = getRecords().filter((r) => r.id !== Number(button.dataset.deleteRecord)); localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); renderRecords(panel); }));
-    list.querySelector('[data-clear-records]')?.addEventListener('click', () => { if (confirm('確定要清除全部飛行評估紀錄嗎？')) { localStorage.removeItem(STORAGE_KEY); renderRecords(panel); } });
+    list.querySelectorAll('[data-delete-record]').forEach((button) => button.addEventListener('click', () => { const next = getRecords().filter((r) => r.id !== Number(button.dataset.deleteRecord)); localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); renderProgress(null, true); }));
+    list.querySelector('[data-clear-records]')?.addEventListener('click', () => { if (confirm('確定要清除全部飛行評估紀錄嗎？')) { localStorage.removeItem(STORAGE_KEY); renderProgress(null, true); } });
   };
   const downloadCertificate = () => {
     const name = prompt('請輸入證書上的姓名：', '')?.trim(); if (!name) return;
@@ -292,6 +294,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const renderResult = (state, blockers, cautions, positives) => {
+    const resultStep = document.querySelector('.result-step');
+    resultStep.classList.remove('history-mode');
+    resultStep.querySelector('[data-reset]').textContent = '建立新任務';
     const panel = document.querySelector('.result-hero');
     const title = document.querySelector('#result-title');
     const lead = document.querySelector('#result-lead');
@@ -342,6 +347,19 @@ document.addEventListener('DOMContentLoaded', () => {
     showStep(5);
   };
 
+  const openRecordsView = () => {
+    const resultStep = document.querySelector('.result-step');
+    resultStep.classList.add('history-mode');
+    const panel = document.querySelector('.result-hero');
+    panel.dataset.resultState = 'hold';
+    panel.querySelector('.result-icon').textContent = '📊';
+    document.querySelector('#result-title').textContent = '我的飛行紀錄與證書';
+    document.querySelector('#result-lead').textContent = '這裡呈現保存在目前瀏覽器中的評估紀錄、答對次數與證書進度。';
+    resultStep.querySelector('[data-reset]').textContent = '開始新的飛行評估';
+    renderProgress(null, true);
+    showStep(5, true);
+  };
+
   document.querySelectorAll('[data-next]').forEach((button) => button.addEventListener('click', () => {
     if (!validateStep(currentStep)) return;
     highestStep = Math.max(highestStep, currentStep + 1);
@@ -349,6 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }));
   document.querySelectorAll('[data-prev]').forEach((button) => button.addEventListener('click', () => showStep(currentStep - 1)));
   stepButtons.forEach((button) => button.addEventListener('click', () => showStep(Number(button.dataset.stepTarget))));
+  document.querySelector('[data-open-records]').addEventListener('click', openRecordsView);
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     if (validateStep(4)) { pendingAssessment = evaluate(); renderQuestion(); }
@@ -362,6 +381,8 @@ document.addEventListener('DOMContentLoaded', () => {
     pendingAssessment = null;
     document.querySelector('#assessment-quiz')?.remove();
     document.querySelector('#learning-progress')?.remove();
+    document.querySelector('.result-step').classList.remove('history-mode');
+    document.querySelector('[data-reset]').textContent = '建立新任務';
     showStep(1);
   });
 });
